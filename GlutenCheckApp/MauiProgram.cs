@@ -5,6 +5,7 @@ using Infrastructure.Gluten.Facades;
 using Infrastructure.Gluten.Interfaces;
 using Infrastructure.Gluten.Services;
 using Microsoft.Extensions.Logging;
+using ZXing.Net.Maui.Controls;
 
 namespace GlutenCheckApp
 {
@@ -19,7 +20,9 @@ namespace GlutenCheckApp
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .UseBarcodeReader();
+                ;
 
 
             builder.Services.AddSingleton<StandardViewModel>();

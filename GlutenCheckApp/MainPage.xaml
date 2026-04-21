@@ -1,20 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GlutenCheckApp.MainPage">
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="GlutenCheckApp.MainPage"
+             >
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Button
-                x:Name="CounterBtn"
-                Text="Kolla gluten" 
-                HorizontalOptions="Fill"
-                Command="{Binding CheckGlutenCommand}"
+    <Grid Margin="25" ColumnSpacing="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <zxing:CameraBarcodeReaderView
+ x:Name="PageBarCodeReader"
+ BarcodesDetected="PageBarCodeReader_BarcodesDetected"
+                Grid.Column="1"
+                Grid.Row="0"
                 />
-            
-        </VerticalStackLayout>
-    </ScrollView>
 
+
+        <Label
+                Text="Gluten status nedan"
+                Grid.Column="1"
+                Grid.Row="1"/>
+            <Label
+               Text="{Binding GlutenStatus}"            
+                Grid.Column="1"
+                Grid.Row="2"/>
+        </Grid>
 </ContentPage>

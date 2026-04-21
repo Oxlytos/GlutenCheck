@@ -15,6 +15,9 @@ namespace Gluten.ContractDTOs.Models
         [JsonPropertyName("allergens")]
         public string MainAllergen { get;set;}
 
+        [JsonPropertyName("allergens_from_ingredients")]
+        public string SecondaryAllergensField { get;set;}
+
         [JsonPropertyName("brands")]
         public string Brand { get; set;}
 

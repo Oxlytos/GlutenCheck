@@ -8,6 +8,8 @@ namespace Domain.Gluten.Models
 {
     public class AllergenResult
     {
-        public string GlutenStatus { get; set; }
+        //Set this to false at ANY hint of gluten
+        public bool IsGlutenFree { get; set; }
+        public string GlutenStatus => IsGlutenFree ? "Kan vara FRI från gluten" : "Innehåller nog gluten";
     }
 }

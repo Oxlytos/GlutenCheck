@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ZXing.Net.MAUI" />
+    <PackageReference Include="ZXing.Net.Maui.Controls" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain.Gluten\Domain.Gluten.csproj" />

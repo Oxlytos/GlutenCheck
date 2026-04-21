@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="ZXing.Net.MAUI" Version="0.6.0" />
+    <PackageVersion Include="ZXing.Net.Maui.Controls" Version="0.6.0" />
   </ItemGroup>
 </Project>

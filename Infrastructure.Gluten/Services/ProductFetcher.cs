@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Infrastructure.Gluten.Interfaces;
 
@@ -20,6 +21,15 @@ namespace Infrastructure.Gluten.Services
 
         public async Task<string?> GetProductData(string barcode)
         {
+            if(barcode == null||string.IsNullOrEmpty(barcode))
+            {
+                return null;
+            }
+            Regex reg = new Regex("[\\d{13}$]");
+            if (!reg.IsMatch(barcode))
+            {
+                return null;
+            }
             HttpResponseMessage msg = await _httpClient.GetAsync(barcode);
 
             try
@@ -32,6 +42,10 @@ namespace Infrastructure.Gluten.Services
                         Console.WriteLine(content);
                         return content;
                     }
+                }
+                else
+                {
+                    Console.WriteLine(msg.StatusCode);
                 }
             }
             catch (Exception ex)

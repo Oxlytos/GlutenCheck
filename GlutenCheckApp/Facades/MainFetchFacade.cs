@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gluten.ContractDTOs.Models;
 using GlutenCheckApp.Interfaces;
 using Infrastructure.Gluten.Interfaces;
 
@@ -21,7 +22,7 @@ namespace Infrastructure.Gluten.Facades
             _cameraService = cameraService;
             _photoRepo = photoRepo;
         }
-        public async Task<string> UserPressGetInfo()
+        public async Task<AllergensModel> UserPressGetInfo()
         {
             string lingonGrovaBarCode = "7311071330525";
             var data = await _productFetcher.GetProductData(lingonGrovaBarCode);
@@ -30,7 +31,17 @@ namespace Infrastructure.Gluten.Facades
 
             var parsedData = await _allergenParser.ParseAllergen(data);
 
-            return data;
+            return parsedData;
+        }
+        public async Task<AllergensModel> UserBarcodeCheck(string barcode)
+        {
+            var data = await _productFetcher.GetProductData(barcode);
+
+            Console.WriteLine(data);
+
+            var parsedData = await _allergenParser.ParseAllergen(data);
+
+            return parsedData;
         }
         public async Task<FileResult?> TakePhotoScan()
         {
