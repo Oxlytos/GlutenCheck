@@ -57,15 +57,7 @@ namespace GlutenCheckApp.ViewModels
             {
                 return;
             }
-            if (returnData.Model.MainAllergen.Contains("gluten"))
-            {
-                GlutenStatus = "Kan innehålla gluten🌾🌾🌾";
-            }
-            else
-            {
-                GlutenStatus = "Kan vara fri 🚫🚫🚫 från gluten";
-            }
-            Console.WriteLine(returnData);
+                GlutenStatus = returnData.GlutenStatus;
         }
 
         private async Task CheckGluten()

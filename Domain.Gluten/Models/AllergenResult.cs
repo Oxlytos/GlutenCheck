@@ -10,6 +10,6 @@ namespace Domain.Gluten.Models
     {
         //Set this to false at ANY hint of gluten
         public bool IsGlutenFree { get; set; }
-        public string GlutenStatus => IsGlutenFree ? "Kan vara FRI från gluten" : "Innehåller nog gluten";
+        public string GlutenStatus => IsGlutenFree ? "Kan vara FRI 🕊️ från gluten" : "Innehåller nog gluten 🌾";
     }
 }

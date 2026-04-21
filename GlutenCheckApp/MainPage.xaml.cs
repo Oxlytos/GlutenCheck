@@ -13,7 +13,8 @@ namespace GlutenCheckApp
             PageBarCodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
             {
                 //European barcode format
-                Formats = ZXing.Net.Maui.BarcodeFormat.Ean13
+                Formats = ZXing.Net.Maui.BarcodeFormat.Ean13,
+                TryHarder = true
 
             };
 
