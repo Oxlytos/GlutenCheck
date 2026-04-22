@@ -3,36 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="GlutenCheckApp.MainPage"
+             BackgroundColor="Wheat"
              >
 
-    <Grid Margin="25" ColumnSpacing="10" >
+    <Grid Margin="25" ColumnSpacing="10" BackgroundColor="Wheat" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
 
-        <zxing:CameraBarcodeReaderView
- x:Name="PageBarCodeReader"
- BarcodesDetected="PageBarCodeReader_BarcodesDetected"
-                Grid.Column="1"
-                Grid.Row="0"
-                />
+        <Image
+            WidthRequest="500"
+            Grid.Column="1"
+            Grid.Row="0"
+            Source="gluten_logo.png"></Image>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid HeightRequest="280" WidthRequest="490">
 
+                <Border
+            Stroke="DarkKhaki"
+            StrokeThickness="5"
+            StrokeShape="RoundRectangle 5"
+            StrokeDashArray="0.5"
+    
+          Grid.RowSpan="1"
+            Grid.ColumnSpan="1">
+
+                    <zxing:CameraBarcodeReaderView
+ 
+            x:Name="PageBarCodeReader"
+                Scale="5"
+ 
+            BarcodesDetected="PageBarCodeReader_BarcodesDetected"
+                Grid.Column="1"
+             
+            HorizontalOptions="Fill"
+
+                
+            VerticalOptions="Fill"
+                
+                
+                />
+                </Border>
+            </Grid>
+        </Grid>
 
         <Label
-                Text="Gluten status nedan"
+               Text="{Binding GlutenStatus}"      
+            TextDecorations="Underline"
+              WidthRequest="400"
+            HorizontalTextAlignment="Center"
+                FontSize="26"
                 Grid.Column="1"
-                Grid.Row="1"/>
-            <Label
-               Text="{Binding GlutenStatus}"            
-                Grid.Column="1"
-                Grid.Row="2"/>
-        </Grid>
+                Grid.Row="3"/>
+    </Grid>
 </ContentPage>

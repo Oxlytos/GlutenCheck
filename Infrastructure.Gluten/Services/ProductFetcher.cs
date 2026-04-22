@@ -46,6 +46,7 @@ namespace Infrastructure.Gluten.Services
                 else
                 {
                     Console.WriteLine(msg.StatusCode);
+                    return null;
                 }
             }
             catch (Exception ex)

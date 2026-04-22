@@ -38,10 +38,17 @@ namespace Infrastructure.Gluten.Facades
         {
             var data = await _productFetcher.GetProductData(barcode);
 
-            Console.WriteLine(data);
+            if (data == null)
+            {
+                return null;
+            }
+
 
             var parsedData = await _allergenParser.ParseAllergen(data);
-
+            if (parsedData == null)
+            {
+                return null;
+            }
 
             return parsedData;
         }

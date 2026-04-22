@@ -50,14 +50,17 @@ namespace GlutenCheckApp.ViewModels
             HandleBarCodeCommand = new Command<string>(async (barcode) => await HandlebarCode(barcode));
         }
 
-        private async Task HandlebarCode(string barcode)
+        private async Task<string?> HandlebarCode(string barcode)
         {
+            GlutenStatus = "Osäker";
             var returnData = await _mainProductFetchFacade.UserBarcodeCheck(barcode);
             if (returnData == null)
             {
-                return;
+                return null;
             }
-                GlutenStatus = returnData.GlutenStatus;
+
+            GlutenStatus = returnData.GlutenStatus;
+            return GlutenStatus;
         }
 
         private async Task CheckGluten()
