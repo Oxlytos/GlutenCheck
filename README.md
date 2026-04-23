@@ -16,6 +16,6 @@ Here's an example of a gluten free ware, McVites Chocolate Biscuits: https://wor
 
 And here's a ware with gluten Karlssons Fyrkant: https://world.openfoodfacts.net/api/v3/product/7311071330525
 
-Example video of use case: https://www.youtube.com/shorts/j89ODCauhkI
+Example video of use case: [https://www.youtube.com/shorts/j89ODCauhkI](https://www.youtube.com/shorts/CKslKIC_lU4)
 
 Application is built in according to Onion Architecture, seperating layers of concern from UI to Domain level.
