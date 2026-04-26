@@ -30,7 +30,9 @@ namespace GlutenCheckApp
 
 
            
-
+            builder.Services.AddSingleton<IJsonStorageService, JsonService>();
+            builder.Services.AddSingleton<IMAUIStorageDirectoryHelper,  MAUIStorageDirectoryHelper>();
+            builder.Services.AddSingleton<IAccountService, AccountService>();
             builder.Services.AddSingleton<IPhotoRepo, PhotoRepo>();
             builder.Services.AddSingleton<ICameraService, CameraService>(); 
             builder.Services.AddSingleton<IAllergenParser, AllergenParser>();

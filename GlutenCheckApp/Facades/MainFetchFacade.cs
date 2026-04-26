@@ -16,12 +16,25 @@ namespace Infrastructure.Gluten.Facades
         IAllergenParser _allergenParser;
         ICameraService _cameraService;
         IPhotoRepo _photoRepo;
-        public MainFetchFacade(IProductFetcher productFetcher, IAllergenParser allergenParser, ICameraService cameraService, IPhotoRepo photoRepo)
+        IAccountService _accountService;
+        IJsonStorageService _jsonStorageService;
+        public MainFetchFacade(
+            IProductFetcher productFetcher, 
+            IAllergenParser allergenParser, 
+            ICameraService cameraService, 
+            IPhotoRepo photoRepo,
+            IAccountService accountService,
+            IJsonStorageService jsonStorageService
+            
+            
+            )
         {
             _productFetcher = productFetcher;
             _allergenParser = allergenParser;
             _cameraService = cameraService;
             _photoRepo = photoRepo;
+            _accountService = accountService;
+            _jsonStorageService = jsonStorageService;
         }
         public async Task<AllergenResult> UserPressGetInfo()
         {
@@ -34,6 +47,7 @@ namespace Infrastructure.Gluten.Facades
 
             return parsedData;
         }
+       
         public async Task<AllergenResult> UserBarcodeCheck(string barcode)
         {
             var data = await _productFetcher.GetProductData(barcode);
@@ -57,6 +71,67 @@ namespace Infrastructure.Gluten.Facades
             var photo =  await _cameraService.TakePhotoAsync();
             await _photoRepo.SavePhoto(photo);
             return photo;
+        }
+
+        public async Task<AccountModel> GetAccountModelAsync(int id=1)
+        {
+            var account = await _accountService.GetAccountAsync(id);
+            return account;
+        }
+
+
+        public async Task<bool> SaveAccount(AccountModel accountModel)
+        {
+            if (accountModel == null)
+            {
+                return false;
+            }
+
+            var res =await _accountService.CreateAccount(accountModel);
+            return res;
+        }
+        public AccountModel GenereateRandomAccount()
+        {
+            AccountModel accountModel = new AccountModel
+            {
+                Id = 1,
+                FirstName = "Anders",
+                LastName = "Andersson",
+                BirthDate = DateOnly.Parse("1968-03-22"),
+            };
+
+            Allergen gluten = new Allergen
+            {
+                Id = 1,
+                Name = "Gluten"
+            };
+
+            accountModel.RegisteredAllergens.Add(gluten);
+            return accountModel;
+        }
+
+        //Check if registered allergens on product matches users allergens
+        //If relevant, notify
+        //Else, continue as usual
+        public async Task<bool> ValidateIfRelevantToUser(AccountModel currentAccount, AllergenResult returnData)
+        {
+            if (returnData == null)
+            {
+                return false;
+            }
+            if(returnData.RegiesteredAllergenResults.Count == 0)
+            {
+                return false;
+            }
+            if(currentAccount.RegisteredAllergens.Count == 0)
+            {
+                return false;
+            }
+
+            //Any match at all
+            bool matches = currentAccount.RegisteredAllergens.Any(e => returnData.RegiesteredAllergenResults.Any(r=> string.Equals(r.Name, e.Name, StringComparison.OrdinalIgnoreCase)));
+
+            return matches;
         }
     }
 }

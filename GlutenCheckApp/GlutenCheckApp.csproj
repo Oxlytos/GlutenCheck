@@ -78,4 +78,14 @@
     <ProjectReference Include="..\Gluten.ContractDTOs\Gluten.ContractDTOs.csproj" />
     <ProjectReference Include="..\Infrastructure.Gluten\Infrastructure.Gluten.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="AccountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
 </Project>

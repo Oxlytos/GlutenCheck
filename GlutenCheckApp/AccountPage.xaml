@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GlutenCheckApp.Account"
+             Title="Account">
+
+    <Grid Margin="25" ColumnSpacing="10" BackgroundColor="Wheat" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label
+             Grid.Row="0"
+            Grid.Column="2"
+            FontSize="16"
+            WidthRequest="500"
+            TextColor="Black"
+            x:Name="LoggedInInfo"
+            Text="{Binding LoggedInText, TargetNullValue='Inte inloggad'}"/>
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+        WidthRequest="250"
+        HeightRequest="50"
+      Text="Skapa test konto"
+      Command="{Binding CreateAccountDemoCommand}">
+        </Button>
+
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+        WidthRequest="250"
+        HeightRequest="50"
+        Text="Simulera inloggat konto"
+        Command="{Binding LoginWithTestAccountCommand}"></Button>
+
+
+    </Grid>
+</ContentPage>

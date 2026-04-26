@@ -8,8 +8,12 @@
     Title="GlutenCheckApp">
 
     <ShellContent
-        Title="Home"
+        Title="Main"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+     Title="Account"
+     ContentTemplate="{DataTemplate local:Account}"
+     Route="Account" />
 
 </Shell>

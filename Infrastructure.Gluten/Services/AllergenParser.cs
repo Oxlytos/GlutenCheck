@@ -27,15 +27,14 @@ namespace Infrastructure.Gluten.Services
 
             if (requestData.Model.MainAllergen.Contains("gluten",StringComparison.InvariantCultureIgnoreCase))
             {
-                result.IsGlutenFree = false;
+                result.RegiesteredAllergenResults.Add(new Allergen { Name="Gluten"});
             }
             else if(requestData.Model.SecondaryAllergensField.Contains("gluten", StringComparison.InvariantCultureIgnoreCase))
             {
-                result.IsGlutenFree = false;
+                result.RegiesteredAllergenResults.Add(new Allergen { Name = "Gluten" });
             }
             else
             {
-                result.IsGlutenFree = true;
             }
 
                 return result;

@@ -6,7 +6,6 @@ namespace GlutenCheckApp
     public partial class MainPage : ContentPage
     {
         StandardViewModel _vm;
-        public Microsoft.Maui.Graphics.Color BackgroundColor { get; set; }
         bool isProccsesing =false;
         public MainPage(StandardViewModel vm)
         {
