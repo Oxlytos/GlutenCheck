@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,11 @@ namespace Infrastructure.Gluten.Facades
             var res =await _accountService.CreateAccount(accountModel);
             return res;
         }
+
+        public async Task SaveUserAccountInfo(AccountModel account)
+        {
+            await _accountService.SaveAccount(account);
+        }
         public AccountModel GenereateRandomAccount()
         {
             AccountModel accountModel = new AccountModel
@@ -128,10 +134,71 @@ namespace Infrastructure.Gluten.Facades
                 return false;
             }
 
+            Console.WriteLine(returnData.RegiesteredAllergenResults);
             //Any match at all
-            bool matches = currentAccount.RegisteredAllergens.Any(e => returnData.RegiesteredAllergenResults.Any(r=> string.Equals(r.Name, e.Name, StringComparison.OrdinalIgnoreCase)));
+            bool matches = currentAccount.RegisteredAllergens.Any(e => returnData.RegiesteredAllergenResults.Any(
+                r=> r.Name!=null && e.Name!=null&&
+                r.Name.Contains(e.Name, StringComparison.OrdinalIgnoreCase)));
 
             return matches;
+        }
+
+        internal AccountModel GenereateTomatoAccount()
+        {
+            AccountModel accountModel = new AccountModel
+            {
+                Id = 2,
+                FirstName = "Thomas",
+                LastName = "Matt",
+                BirthDate = DateOnly.Parse("1986-07-02"),
+            };
+
+            Allergen gluten = new Allergen
+            {
+                Id = 1,
+                Name = "Tomato"
+            };
+
+            accountModel.RegisteredAllergens.Add(gluten);
+            return accountModel;
+        }
+
+        internal AccountModel CreateMilkAccount()
+        {
+            AccountModel accountModel = new AccountModel
+            {
+                Id = 3,
+                FirstName = "Maurice",
+                LastName = "Yolk",
+                BirthDate = DateOnly.Parse("2002-01-17"),
+            };
+
+            Allergen gluten = new Allergen
+            {
+                Id = 1,
+                Name = "Milk"
+            };
+
+            accountModel.RegisteredAllergens.Add(gluten);
+            return accountModel;
+        }
+
+        public async Task<ObservableCollection<Allergen>> GetUserAllergens(AccountModel currentAccount)
+        {
+            ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>();
+
+            foreach(var allergen in currentAccount.RegisteredAllergens)
+            {
+                allergens.Add((Allergen)allergen);
+            }
+
+            return allergens;
+        }
+
+        internal async Task RemoveAllergenFromUser(AccountModel currentAccount, Allergen allergen)
+        {
+
+            currentAccount.RegisteredAllergens.Remove(allergen);
         }
     }
 }

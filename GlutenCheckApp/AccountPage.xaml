@@ -4,46 +4,74 @@
              x:Class="GlutenCheckApp.Account"
              Title="Account">
 
-    <Grid Margin="25" ColumnSpacing="10" BackgroundColor="Wheat" >
+    <Grid Padding="25" RowSpacing="15" ColumnSpacing="15" BackgroundColor="Wheat">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*" />
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Logged in label -->
         <Label
-             Grid.Row="0"
-            Grid.Column="2"
-            FontSize="16"
-            WidthRequest="500"
-            TextColor="Black"
-            x:Name="LoggedInInfo"
-            Text="{Binding LoggedInText, TargetNullValue='Inte inloggad'}"/>
+        Grid.Row="0"
+        Grid.ColumnSpan="2"
+        FontSize="16"
+            FontFamily="OpenDyslexic_Regular"
+        TextColor="Black"
+        HorizontalOptions="Center"
+        Text="{Binding LoggedInText, TargetNullValue='Inte inloggad'}"/>
+
+        <!-- Gluten label & button-->
+        <Button
+        Grid.Row="1"
+        Grid.Column="0"
+        Text="Skapa gluten"
+        LineBreakMode="WordWrap"
+        Command="{Binding CreateAccountDemoCommand}" />
 
         <Button
-            Grid.Row="1"
-            Grid.Column="1"
-        WidthRequest="250"
-        HeightRequest="50"
-      Text="Skapa test konto"
-      Command="{Binding CreateAccountDemoCommand}">
-        </Button>
+        Grid.Row="1"
+        Grid.Column="1"
+        Text="Login Gluten"
+        LineBreakMode="WordWrap"
+        Command="{Binding LoginWithTestAccountCommand}" />
+
+        <!-- Tomat -->
+        <Button
+        Grid.Row="2"
+        Grid.Column="0"
+        Text="Skapa tomat"
+        LineBreakMode="WordWrap"
+        Command="{Binding CreateTomatoAccountCommand}" />
 
         <Button
-            Grid.Row="2"
-            Grid.Column="1"
-        WidthRequest="250"
-        HeightRequest="50"
-        Text="Simulera inloggat konto"
-        Command="{Binding LoginWithTestAccountCommand}"></Button>
+        Grid.Row="2"
+        Grid.Column="1"
+        Text="Logga in tomat"
+        LineBreakMode="WordWrap"
+        Command="{Binding LoginTomatoCommand}" />
 
+        <!-- Mjölk -->
+        <Button
+        Grid.Row="3"
+        Grid.Column="0"
+        Text="Skapa mjölk"
+        LineBreakMode="WordWrap"
+        Command="{Binding CreateMilkCommand}" />
+
+        <Button
+        Grid.Row="3"
+        Grid.Column="1"
+        Text="Logga in mjölk"
+        LineBreakMode="WordWrap"
+        Command="{Binding LoginMilkCommand}" />
 
     </Grid>
 </ContentPage>

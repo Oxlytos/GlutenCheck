@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Domain.Gluten.Models;
 using Gluten.ContractDTOs.Models;
 using Infrastructure.Gluten.Interfaces;
+using Infrastructure.Gluten.Managers;
 
 namespace Infrastructure.Gluten.Services
 {
@@ -24,18 +25,20 @@ namespace Infrastructure.Gluten.Services
         public AllergenResult Create(AllergensModel requestData)
         {
             AllergenResult result = new AllergenResult();
+            result.RegiesteredAllergenResults = new List<Allergen>();
 
-            if (requestData.Model.MainAllergen.Contains("gluten",StringComparison.InvariantCultureIgnoreCase))
+            foreach(var allergen in AllergenManager.ExampleAllergens)
             {
-                result.RegiesteredAllergenResults.Add(new Allergen { Name="Gluten"});
+                if(requestData.Model.MainAllergen.Contains(allergen.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.RegiesteredAllergenResults.Add(allergen);
+                }
+                if(requestData.Model.SecondaryAllergensField.Contains(allergen.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.RegiesteredAllergenResults.Add(allergen);
+                }
             }
-            else if(requestData.Model.SecondaryAllergensField.Contains("gluten", StringComparison.InvariantCultureIgnoreCase))
-            {
-                result.RegiesteredAllergenResults.Add(new Allergen { Name = "Gluten" });
-            }
-            else
-            {
-            }
+
 
                 return result;
 

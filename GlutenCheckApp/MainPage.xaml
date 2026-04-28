@@ -6,19 +6,20 @@
              BackgroundColor="Wheat"
              >
 
-    <Grid Margin="25" ColumnSpacing="10" BackgroundColor="Wheat" >
+    <Grid Padding="25" ColumnSpacing="10" BackgroundColor="Wheat" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
+            
         </Grid.ColumnDefinitions>
 
 
@@ -68,13 +69,14 @@
         </Grid>
 
         <Label
-               Text="{Binding GlutenStatus}"      
-            TextDecorations="Underline"
+    Text="{Binding GlutenStatus}"
+    LineBreakMode="WordWrap"
+    HorizontalOptions="FillAndExpand"
+    HorizontalTextAlignment="Center"
+            WidthRequest="400"
             TextColor="Black"
-              WidthRequest="400"
-            HorizontalTextAlignment="Center"
-                FontSize="26"
-                Grid.Column="1"
-                Grid.Row="3"/>
+    FontSize="20"
+    Grid.Column="1"
+    Grid.Row="4"/>
     </Grid>
 </ContentPage>

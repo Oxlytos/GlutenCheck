@@ -3,6 +3,7 @@ using GlutenCheckApp.Services;
 using GlutenCheckApp.ViewModels;
 using Infrastructure.Gluten.Facades;
 using Infrastructure.Gluten.Interfaces;
+using Infrastructure.Gluten.Managers;
 using Infrastructure.Gluten.Services;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
@@ -18,6 +19,8 @@ namespace GlutenCheckApp
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
+                    fonts.AddFont("Nunito-VariableFont_wght.ttf", "Nunito");
+                    fonts.AddFont("Oswald-VariableFont_wght.ttf", "Oswald");
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
@@ -39,6 +42,8 @@ namespace GlutenCheckApp
             builder.Services.AddSingleton<ICameraService, CameraService>();
             builder.Services.AddSingleton<IProductFetcher, ProductFetcher>();
             builder.Services.AddSingleton(new HttpClient());
+
+            AllergenManager.CreateInitalAllergens();
 
             return builder.Build();
         }

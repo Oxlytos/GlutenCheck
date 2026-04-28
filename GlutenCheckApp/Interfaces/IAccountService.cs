@@ -13,7 +13,6 @@ namespace GlutenCheckApp.Interfaces
         Task<bool> CreateAccount(AccountModel accountModel);
         Task<AccountModel> UpdateAccount(int accountId, Account account);
         Task<AccountModel> DeleteAccount(int accountId);
-
-
+        Task SaveAccount(AccountModel account);
     }
 }

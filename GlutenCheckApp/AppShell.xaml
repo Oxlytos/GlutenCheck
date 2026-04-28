@@ -15,5 +15,9 @@
      Title="Account"
      ContentTemplate="{DataTemplate local:Account}"
      Route="Account" />
+    <ShellContent
+ Title="Account Settings"
+ ContentTemplate="{DataTemplate local:AccountSettings}"
+ Route="AccountSettings" />
 
 </Shell>

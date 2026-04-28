@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Gluten.Models
+namespace GlutenCheckApp.Models
 {
-    public class Allergen
+    public class SelectableAllergenUI
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public List<string> Keywords { get; set; }
+        public bool IsSelected { get; set; }
     }
 }
